@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity= "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./static/login.css">
+    <link rel="stylesheet" href="./static/style.css">
+    <link rel="stylesheet" href="./static/style2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+    
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src=".\images\logo.png" id="icon" alt="User Icon" />
+            </div>
+    
+            <!-- Login Form -->
+    
+            <form name="login" method="POST" action="/login"></form>
+                <span>
+                    <input v-model='email' type='email' class="fadeIn second" placeholder="e-mail">
+                    <input v-model='password' type='password' class="fadeIn third" placeholder="password">
+                    <label for="" >Login</label>
+                    <input type="radio" name="logintype" id="" value="login">
+                    <label for="" >Register</label>
+                    <input type="radio" name="logintype" id="" value="Register">
+                    <!--<input type="submit" class="fadeIn fourth" v-on:click='signin' value="Log in"/>
+                    <input type="submit" class="fadeIn fourth" v-on:click='signup' value="Register" />-->
+                    <input type="submit" name="" id="" value="enter">
+        
+                </span>
+            </form>
+    
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+    
+        </div>
+    </div>
+</body>
+</html>
