@@ -175,7 +175,6 @@ app.get('/json', function(req, res) {
 /* GET HTML FILE */
 app.get('/sign_up', function(req, res) {
 
-  res.locals.user = {user: req.user};
   res.sendFile(__dirname + '/sign_up.html') //create a index file 
 
 });
