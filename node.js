@@ -256,13 +256,8 @@ var query = { email: u_email };
 
 
 
-
-
-
-  //res.sendStatus(200);
+//res.sendStatus(200);
 });
-
-
 app.post('/user_success', (req, res) => {
     console.log('Got ID:', req.body['_id']);
     console.log('Got Name:', req.body['name']);
