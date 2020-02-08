@@ -20,20 +20,21 @@
     
             <!-- Login Form -->
     
-            <form name="login" method="POST" action="/logindecision">
+            <form method="POST" action="/logindecision">
                 <span>
                     <input name='email' type='email' class="fadeIn second" placeholder="e-mail">
                     <input name='password' type='password' class="fadeIn third" placeholder="password">
                     <br>
                     <input type="submit" name="logintype" id="" value="login">
                     <br>
-                    <a href="/sign_up"><button type="submit" name="logintype" id="">Register</button></a>
+            </form>
+                    <a href="/sign_up"><button>Register</button></a>
                     
                     <!--<input type="submit" class="fadeIn fourth" v-on:click='signin' value="Log in"/>
                     <input type="submit" class="fadeIn fourth" v-on:click='signup' value="Register" />-->
         
                 </span>
-            </form>
+            
     
             <!-- Remind Passowrd -->
             <div id="formFooter">

@@ -1,51 +1,85 @@
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body class="container" style="margin:5px; padding: 5px;">
     <h1>THIS IS THE ADMINISTRATION SCREEN</h1>
     <div id="searchFilter">
-        <button @click='signout'>Sign out</button>
+        <button>Sign out</button>
         <!-- search -->
-        Search <input v-model='term'><br><br>
+        Search : <input v-model="searchQuery" class="input" type="text" placeholder="Enter topic name">
 
-        <!-- filter -->
-        <select multiple v-model='userLocations'>
-            <option v-for='location in locations'>
-            </option>
-        </select>
-        <button v-on:click='reset'>reset</button><br>
 
-        <!-- results -->
-        <div v-for='(course, index) in results' class='course'>
-            <span v-model: index>  </span>
-            <ul>
-                <li v-for='(value, key) in course'>
-                </li>
-            </ul>
-        <input type="button" id="updateItem" value="Update" v-on:click="updateItem(index)" />
-        </div>
 
-        <div class= "course" id="newCourse">
-            <h3> Add new Item </h3>
-            <input type="text" placeholder="Topic"  v-model='topic'  /><br />
-            <input type="text" placeholder="location"  v-model='location'  /><br />
-            <input type="text" placeholder="price"  v-model='price'  /><br />
-            <input type="text" v-model='current' disabled/><br />
-            <input type="button" value='Add New' v-on:click='addCourse()' />
-        </div>
 
-        <div class= "course" id="newCourse">
-            <h3> Update Existing Item </h3>
-            <input type="text" placeholder="Topic" id="updTop"  v-bind="updTop" /><br />
-            <input type="text" placeholder="location" id="updLoc"  v-bind="updLoc" /><br />
-            <input type="text" placeholder="price" id="updPrc"  v-bind="updPrc" /><br />
-            <input type="text" v-model='current' disabled/><br />
-            <input type="button" value='Update' v-on:click='placeUpdate(index)' />
-        </div>
+        <select name="topic" v-model="selectedCourse" placeholder="Select Topic">       
+            <option value="">Select your Topic</option>
+             <option v-for="course in courses" v-bind:value="course.topic">
+                 {{course.topic }}
+               </option>
+         </select>
+
+
+ 
+        <!--delete for the courses-->
+        <form action="/delete" method="POST">
+            <div class= "course" id="newCourse">
+                <h3> Delete an Item </h3>
+                <input type="text" placeholder="Topic" name="topic" v-model='selectedCourse'  /><br />
+                <input type="submit" value='Delete ' />
+            </div>
+        </form>
+
+        <form action="/add" method="POST">
+            <div class= "course" id="newCourse">
+                <h3> Add new Item </h3>
+                <input type="text" placeholder="Topic"  name='topic' /><br />
+                <input type="text" placeholder="location"  name='location'  /><br />
+                <input type="text" placeholder="price"  name='price'  /><br />
+                <input type="submit" value='Add New' />
+            </div>
+        </form>
+        
+        <form action="/update" method="POST">
+            <div class= "course" id="newCourse">
+                <h3> Update Existing Item </h3>
+                <input type="text" placeholder="Topic"  name="topic" v-model="selectedCourse" /><br />
+                <input type="text" placeholder="location" name="location" /><br />
+                <input type="text" placeholder="price" name="price"/><br />
+                <input type="submit" value='Update'/>
+            </div>
+        </form>
+        
     </div>
 
+
+
+
+
+    <script>
+        var selectedCourse,courses,searchQuery;
+var app = new Vue({
+        el: '#searchFilter',
+        data:
+            {
+                message: 'hello Vue',
+                selectedCourse,
+                courses,searchQuery
+            },
+            
+        created() {
+                fetch('/allcourses').then((response) =>{
+                    return  response.json().then((courses) =>{
+                        this.courses = (courses);
+                    })
+                });
+            }
+        });            
+    </script>
 </body>
 </html>

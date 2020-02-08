@@ -19,7 +19,7 @@ app.use(session({
 app.get("/hello", (req, res) => {
 
   req.session.user = "Hello world";
-  res.send("Hello world");
+  res.send("Hello Mudi");
 
 }); 
 
@@ -254,8 +254,6 @@ var query = { email: u_email };
     console.log('user found ' + results[0].name);
       //redirect
 
-
-      
           //redirect - admin and normal user
         if (results[0].adminuser == true)
             res.redirect('/search')
@@ -267,12 +265,8 @@ var query = { email: u_email };
     else if (results.length == 0)
     { 
       
-      
-      console.log('This user doesnt exist'); 
+      console.log('This user does not exist'); 
 
-      
-      //redirect
-      res.redirect('/sign_up')
   }
   else
    console.log(err)
@@ -328,24 +322,24 @@ const dbo1 = p.db("pwaCW2");
 
 
 
-/* UPDATE RECORD */
+/* UPDATE course */
 
 app.post('/update', (req, res) => {
 
 const dbo2 = p.db("pwaCW2"); //database
 
-var u_name = req.body['name'];
-var u_pass = req.body['password'];
-var u_email = req.body['email'];
+var u_topic = req.body['topic'];
+var u_location = req.body['location'];
+var u_price = req.body['price'];
 
 
 
-  var myquery = { Email: "Mickey" }; //record you want to search
-  var newvalues = { $set: {Email: u_email, Password: u_pass } };
+  var myquery = { courses: u_topic }; //record you want to search
+  var newvalues = { $set: {topic:u_topic, location:u_location,  pirce:u_price } };
 
 
   // collection
-  dbo2.collection("userdetails").updateOne(myquery, newvalues, function(err, res) {
+  dbo2.collection("courses").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
    });
@@ -359,23 +353,38 @@ app.post('/delete', (req, res) => {
 
 const dbo2 = p.db("pwaCW2");
 
-var u_name = req.body['name'];
-var u_pass = req.body['password'];
-var u_email = req.body['email'];
+var u_topic = req.body['topic'];
 
+  var myquery = { courses: u_topic };
+  var newvalues = { $set: {courses: u_topic} };
 
-
-  var myquery = { Email: "okay4now" };
-  var newvalues = { $set: {Email: u_email, Password: u_pass } };
-
-  dbo2.collection("userdetails").deleteOne(myquery, function(err, res) {
+  dbo2.collection("courses").deleteOne(myquery, function(err, res) {
     if (err) throw err;
-    console.log("1 document deleted");
+    console.log("1 course deleted");
    });
 
 });
 
-
+/* Add course */
+  
+  app.post('/add', (req, res) => {
+    console.log('topic:', req.body['topic']);
+    console.log('Amount:', req.body['price']);
+  
+  var u_topic = req.body['topic'];
+  var u_location = req.body['location'];
+  var u_price = req.body['price'];
+  
+  //mongo connection for the registeration
+  const dbo1 = p.db("pwaCW2");
+  
+  dbo1.collection('courses').save({topic: u_topic, location:u_location ,price:u_price}, (err, result) => {
+     if (err) return console.log(err)
+  
+     console.log('1 course saved to database')
+  });
+  
+  })
 
 
 // SHOW LOG THAT SERVER STARTED
