@@ -279,8 +279,27 @@ dbo1.collection('userdetails').save({Name: u_name, Email:u_email ,Password:u_pas
  })
 
 
+
     //res.sendStatus(200);
 });
+
+ //Postscomments
+app.post('/postcomments', (req, res) => {
+
+  var u_topic = req.body['topic'];
+  var u_comment = req.body['comment'];
+  var u_rating = req.body['rating'];
+
+
+const dbo1 = p.db("pwaCW2");
+
+  dbo1.collection('comments').save({topic: u_topic, comment:u_comment ,rating:u_rating}, (err, result) => {
+    if(err) return console.log(err)
+    console.log('Courses commented')
+  })
+ });
+
+
 
 /* UPDATE RECORD */
 

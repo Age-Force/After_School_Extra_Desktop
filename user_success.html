@@ -17,28 +17,30 @@
     <div id="vueapp">
 
         <input v-model="searchQuery" class="input" type="text" placeholder="Text input">
-
+        <br>
+        <hr>
         <select multiple>
             <option v-for='course in resultQuery'>
                 {{ course.topic }}
             </option>
         </select> 
+        <br>
+        <hr>
+        <form action="/postcomments" method="post">
+            <input value="math" name="topic" type="hidden" />
+            <input type="text" name="comment" />
+            <div id="rating" >
+                <h2>Rate this course</h2>
+                <input type="radio" id="rate1" name="rating" value="1" >1</input>
+                <input type="radio" id="rate2" name="rating" value="2" >2</input>
+                <input type="radio" id="rate3" name="rating" value="3" >3</input>
+                <input type="radio" id="rate4" name="rating" value="4" >4</input>
+                <input type="radio" id="rate5" name="rating" value="5" >5</input>
 
-            <form action="#" method="post" class="demoForm" id="demoForm">
-            
-                <textarea name="comment" form="usrform">Enter text here...</textarea>
-                <div id="rating" >
-                    <h2>Rate this course</h2>
-                    <input type="radio" id="rate1" name="rate" value="1" >1</input>
-                    <input type="radio" id="rate2" name="rate" value="2" >2</input>
-                    <input type="radio" id="rate3" name="rate" value="3" >3</input>
-                    <input type="radio" id="rate4" name="rate" value="4" >4</input>
-                    <input type="radio" id="rate5" name="rate" value="5" >5</input>
+                <input type="submit" value="Save rating" v-on:click="saveRating(index)" />
 
-                    <input type="button" value="input" v-on:click="saveRating(index)" />
-
-                </div>
-            </form>
+            </div>
+        </form>
     </div>
 </body>
 <script type="text/javascript">
