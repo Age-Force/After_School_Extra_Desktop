@@ -95,6 +95,31 @@ app.get("/allcourses", (req, res) => {
   });
 
 
+//show all comments 
+app.get("/allcomments", (req, res) => {
+
+  const dbo = p.db("pwaCW2");
+  
+  dbo.collection('comments').find().toArray(function(err, results) {
+   
+  if(results)
+    {
+  
+    console.log(results.toArray)
+  
+  // to see the first element
+    res.json(results)
+  
+    }
+  
+  else
+   console.log(err)
+  
+    // send HTML file populated with quotes here
+  })
+  
+  });
+
 
 
 const bodyParser = require('body-parser');
@@ -296,6 +321,8 @@ const dbo1 = p.db("pwaCW2");
   dbo1.collection('comments').save({topic: u_topic, comment:u_comment ,rating:u_rating}, (err, result) => {
     if(err) return console.log(err)
     console.log('Courses commented')
+
+    res.redirect('/user_success');
   })
  });
 

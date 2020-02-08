@@ -7,7 +7,6 @@
 <body>
     <h1>THIS IS THE ADMINISTRATION SCREEN</h1>
     <div id="searchFilter">
-        {{ getCurrentUser()}}
         <button @click='signout'>Sign out</button>
         <!-- search -->
         Search <input v-model='term'><br><br>
@@ -15,17 +14,15 @@
         <!-- filter -->
         <select multiple v-model='userLocations'>
             <option v-for='location in locations'>
-                {{location}}
             </option>
         </select>
         <button v-on:click='reset'>reset</button><br>
 
         <!-- results -->
         <div v-for='(course, index) in results' class='course'>
-            <span v-model: index> {{ index }} </span>
+            <span v-model: index>  </span>
             <ul>
                 <li v-for='(value, key) in course'>
-                    {{key}}: {{value}}
                 </li>
             </ul>
         <input type="button" id="updateItem" value="Update" v-on:click="updateItem(index)" />
