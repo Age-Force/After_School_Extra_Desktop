@@ -74,7 +74,7 @@ app.get("/allcourses", (req, res) => {
 
   const dbo = p.db("pwaCW2");
   
-  dbo.collection('userdetails').find().toArray(function(err, results) {
+  dbo.collection('courses').find().toArray(function(err, results) {
    
   if(results)
     {
@@ -82,7 +82,7 @@ app.get("/allcourses", (req, res) => {
     console.log(results.toArray)
   
   // to see the first element
-    res.send(results)
+    res.json(results)
   
     }
   
@@ -239,7 +239,7 @@ var query = { email: u_email };
 
 
     }
-  else if (results.length == 0)
+    else if (results.length == 0)
     { 
       
       
@@ -247,6 +247,7 @@ var query = { email: u_email };
 
       
       //redirect
+      res.redirect('/sign_up')
   }
   else
    console.log(err)

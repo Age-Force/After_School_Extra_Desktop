@@ -1,0 +1,37 @@
+    <!--{{ getCurrentUser()}}-->
+    <button @click='signout'>Sign out</button>
+    <!-- search -->
+    Search <input v-model='term'><br><br>
+
+    <!-- filter -->
+    <select multiple v-model='userLocations'>
+        <option v-for='location in locations'>
+            {{user}}
+        </option>
+    </select>
+    <button v-on:click='reset'>reset</button><br>
+
+    <!-- results -->
+    <form action="#" method="post" class="demoForm" id="demoForm">
+    <div v-for='(course, index) in results' class='course'>
+        <span v-model: index> {{ index }} <span>
+                <ul>
+                    <li v-for='(value, key) in course'>
+                        {{key}}: {{value}}
+                    </li>
+                </ul>
+                <div id="rating" >
+                
+                    <h2>Rate this course</h2>
+                    <input type="radio" id="rate1" name="rate" value="1" >1</input>
+                    <input type="radio" id="rate2" name="rate" value="2" >2</input>
+                    <input type="radio" id="rate3" name="rate" value="3" >3</input>
+                    <input type="radio" id="rate4" name="rate" value="4" >4</input>
+                    <input type="radio" id="rate5" name="rate" value="5" >5</input>
+
+                    <input type="button" value="input" v-on:click="saveRating(index)" />
+
+                </div>
+    </form>
+    </div>
+</div>
