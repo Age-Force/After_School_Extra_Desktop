@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 
 
 //loging into differen pages as users or Admin
-app.get("/search", (req, res) => {
+app.get("/showallrecord", (req, res) => {
 
   const dbo = p.db("pwaCW2");
   
@@ -68,6 +68,34 @@ app.get("/search", (req, res) => {
   res.sendFile(__dirname + '/search.html');
 
 }); 
+
+//courses search 
+app.get("/allcourses", (req, res) => {
+
+  const dbo = p.db("pwaCW2");
+  
+  dbo.collection('courses').find().toArray(function(err, results) {
+   
+  if(results)
+    {
+  
+    console.log(results.toArray)
+  
+  // to see the first element
+    res.send(results)
+  
+    }
+  
+  else
+   console.log(err)
+  
+    // send HTML file populated with quotes here
+  })
+  
+  });
+
+
+
 
 const bodyParser = require('body-parser');
 
