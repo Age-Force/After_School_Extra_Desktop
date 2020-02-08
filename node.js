@@ -29,6 +29,34 @@ app.get("/", (req, res) => {
 
 }); 
 
+
+//loging into differen pages as users or Admin
+app.get("/search", (req, res) => {
+
+  const dbo = p.db("pwaCW2");
+  
+  dbo.collection('userdetails').find().toArray(function(err, results) {
+   
+  if(results)
+    {
+  
+    console.log(results.toArray)
+  
+  // to see the first element
+    res.send(results)
+  
+    }
+  
+  else
+   console.log(err)
+  
+    // send HTML file populated with quotes here
+  })
+  
+  });
+
+
+
 //Admin search  page
 app.get("/user_success", (req, res) => {
   res.sendFile(__dirname + '/user_success.html');
@@ -46,7 +74,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-//userand Admin register
+////user and Admin register 1
 app.post('/form_decision', (req, res) => {
   console.log('usertype:', req.body['usertype']);
   console.log('Got Name:', req.body['name']);
@@ -56,8 +84,18 @@ var u_pass = req.body['password'];
 var u_email = req.body['email'];
 var u_usertype = req.body['usertype'];
 
+//mongo connection for the registeration
+const dbo1 = p.db("pwaCW2");
 
+dbo1.collection('userdetails').save({Name: u_name, Email:u_email ,Password:u_pass, usertype:u_usertype}, (err, result) => {
+   if (err) return console.log(err)
 
+   console.log('saved to database')
+   res.redirect('/user')
+
+ })
+
+//user and Admin register 2
 if(u_usertype=='user')
   res.redirect('/user_success');
 
