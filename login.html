@@ -20,10 +20,10 @@
     
             <!-- Login Form -->
     
-            <form name="login" method="POST" action="/login"></form>
+            <form name="login" method="POST" action="/logindecision">
                 <span>
-                    <input v-model='email' type='email' class="fadeIn second" placeholder="e-mail">
-                    <input v-model='password' type='password' class="fadeIn third" placeholder="password">
+                    <input name='email' type='email' class="fadeIn second" placeholder="e-mail">
+                    <input name='password' type='password' class="fadeIn third" placeholder="password">
                     <br>
                     <input type="submit" name="logintype" id="" value="login">
                     <br>

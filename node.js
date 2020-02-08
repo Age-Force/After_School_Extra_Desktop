@@ -35,7 +35,7 @@ app.get("/showallrecord", (req, res) => {
 
   const dbo = p.db("pwaCW2");
   
-  dbo.collection('userdetails').find().toArray(function(err, results) {
+  dbo.collection('courses').find().toArray(function(err, results) {
    
   if(results)
     {
@@ -74,7 +74,7 @@ app.get("/allcourses", (req, res) => {
 
   const dbo = p.db("pwaCW2");
   
-  dbo.collection('courses').find().toArray(function(err, results) {
+  dbo.collection('userdetails').find().toArray(function(err, results) {
    
   if(results)
     {
@@ -115,7 +115,7 @@ var u_usertype = req.body['usertype'];
 //mongo connection for the registeration
 const dbo1 = p.db("pwaCW2");
 
-dbo1.collection('userdetails').save({Name: u_name, Email:u_email ,Password:u_pass, usertype:u_usertype}, (err, result) => {
+dbo1.collection('userdetails').save({name: u_name, email:u_email ,password:u_pass, usertype:u_usertype}, (err, result) => {
    if (err) return console.log(err)
 
    console.log('saved to database')
@@ -190,6 +190,92 @@ MongoClient.connect('mongodb+srv://pwaCW2:Hocnd1com@cluster0-ganv4.mongodb.net/t
   db = client.db('pwaCW2')
   }
 });
+
+
+
+
+
+app.post('/logindecision', (req, res) => {
+  console.log('Got Name:', req.body['name']);
+  console.log('Got ID:', req.body['email']);
+
+var u_name = req.body['name'];
+var u_pass = req.body['password'];
+var u_email = req.body['email'];
+
+
+console.log(u_name);
+
+const dbo = p.db("pwaCW2");
+  
+var query = { email: u_email };
+
+  dbo.collection('userdetails').find(query).toArray(function(err, results) {
+   
+
+
+
+  if(results.length != 0) //User exists
+    {
+    
+  // to see the first element
+    // res.send('user found' +JSON.stringify(results))
+  
+
+
+    req.session.user = results[0].name;   // Saving User details in Sessions to show name across all pages
+
+
+    console.log('user found ' + results[0].name);
+      //redirect
+
+
+      
+          //redirect - admin and normal user
+        if (results[0].adminuser == true)
+            res.redirect('/search')
+        else if (results[0].adminuser == false)
+            res.redirect('/user')
+
+
+    }
+  else if (results.length == 0)
+    { 
+      
+      
+      console.log('This user doesnt exist'); 
+
+      
+      //redirect
+  }
+  else
+   console.log(err)
+  
+    // send HTML file populated with quotes here
+  })
+
+
+
+
+
+
+  //res.sendStatus(200);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
