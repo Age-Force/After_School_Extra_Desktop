@@ -1,21 +1,17 @@
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="./static/login.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body class="container" style="margin:5px; padding: 5px;">
+<body class="container"> 
     <h1>THIS IS THE ADMINISTRATION SCREEN</h1>
     <div id="searchFilter">
         <button>Sign out</button>
         <!-- search -->
         Search : <input v-model="searchQuery" class="input" type="text" placeholder="Enter topic name">
-
-
-
 
         <select name="topic" v-model="selectedCourse" placeholder="Select Topic">       
             <option value="">Select your Topic</option>
@@ -57,29 +53,25 @@
         
     </div>
 
-
-
-
-
-    <script>
-        var selectedCourse,courses,searchQuery;
-var app = new Vue({
-        el: '#searchFilter',
-        data:
-            {
-                message: 'hello Vue',
-                selectedCourse,
-                courses,searchQuery
-            },
-            
-        created() {
-                fetch('/allcourses').then((response) =>{
-                    return  response.json().then((courses) =>{
-                        this.courses = (courses);
-                    })
-                });
-            }
-        });            
-    </script>
 </body>
+<script>
+    var selectedCourse,courses,searchQuery;
+    var app = new Vue({
+    el: '#searchFilter',
+    data:
+        {
+            message: 'hello Vue',
+            selectedCourse,
+            courses,searchQuery
+        },
+        
+    created() {
+            fetch('/allcourses').then((response) =>{
+                return  response.json().then((courses) =>{
+                    this.courses = (courses);
+                })
+            });
+        }
+    });            
+</script>
 </html>

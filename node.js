@@ -1,11 +1,12 @@
 const express = require("express");
 const session = require("client-sessions");
+const path = require("path");
 
 const PORT = 4060;
 const app = express();
 
-//get Login
 
+//get Login
 app.use(session({
   cookieName: 'session',
   secret: 'random_string_goes_here',
@@ -13,6 +14,7 @@ app.use(session({
   activeDuration: 5 * 60 * 1000,
 }));
 
+app.use(express.static('public'))
 
 /* GET CALL */
 
@@ -25,7 +27,7 @@ app.get("/hello", (req, res) => {
 
 //login page
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + '/login.html');
+  res.sendFile(__dirname + '/public/templates/login.html');
 
 }); 
 
@@ -58,14 +60,14 @@ app.get("/showallrecord", (req, res) => {
 
 
 //Admin search  page
-app.get("/user_success", (req, res) => {
-  res.sendFile(__dirname + '/user_success.html');
+app.get("/public/templates/user_success", (req, res) => {
+  res.sendFile(__dirname + '/public/templates/user_success.html');
 
 }); 
 
 //user search page
-app.get("/search", (req, res) => {
-  res.sendFile(__dirname + '/search.html');
+app.get("/public/templates/search", (req, res) => {
+  res.sendFile(__dirname + '/public/templates/search.html');
 
 }); 
 
@@ -150,10 +152,10 @@ dbo1.collection('userdetails').save({name: u_name, email:u_email ,password:u_pas
 
 //user and Admin register 2
 if(u_usertype=='user')
-  res.redirect('/user_success');
+  res.redirect('/public/templates/user_success');
 
 else if (u_usertype=='provider')
-  res.redirect('/search');
+  res.redirect('/public/templates/search');
 });
 
 
@@ -175,7 +177,7 @@ app.get('/json', function(req, res) {
 /* GET HTML FILE */
 app.get('/sign_up', function(req, res) {
 
-  res.sendFile(__dirname + '/sign_up.html') //create a index file 
+  res.sendFile(__dirname + '/public/templates/sign_up.html') //create a index file 
 
 });
 
@@ -183,7 +185,7 @@ app.get('/sign_up', function(req, res) {
 /* GET HTML FILE */
 app.get('/user', function(req, res) {
 
-res.sendFile(__dirname + '/user_success.html') //create a index file 
+res.sendFile(__dirname + '/public/templates/user_success.html') //create a index file 
 
 //res.send("User Page");
 
@@ -207,7 +209,7 @@ var MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://pwaCW2:Hocnd1com@cluster0-ganv4.mongodb.net/test?retryWrites=true&w=majority', function(err, db) {
   if(!err) {
   p = db
-    console.log("We are connected now");
+    console.log("Server is connected");
 }
   else
   {
@@ -315,7 +317,7 @@ const dbo1 = p.db("pwaCW2");
     if(err) return console.log(err)
     console.log('Courses commented')
 
-    res.redirect('/user_success');
+    res.redirect('/public/templates/user_success');
   })
  });
 
