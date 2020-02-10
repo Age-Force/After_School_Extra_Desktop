@@ -263,14 +263,9 @@ var query = { email: u_email };
   }
   else
    console.log(err)
-  
-    // send HTML file populated with quotes here
   })
-
-
-
-//res.sendStatus(200);
 });
+
 app.post('/user_success', (req, res) => {
     console.log('Got ID:', req.body['_id']);
     console.log('Got Name:', req.body['name']);
@@ -291,8 +286,6 @@ dbo1.collection('userdetails').save({Name: u_name, Email:u_email ,Password:u_pas
  })
 
 
-
-    //res.sendStatus(200);
 });
 
  //Postscomments
@@ -340,7 +333,7 @@ var u_price = req.body['price'];
 });
 
 
-/* DELETE RECORD */
+// DELETE RECORD 
 
 app.post('/delete', (req, res) => {
 
@@ -358,7 +351,7 @@ var u_topic = req.body['topic'];
 
 });
 
-/* Add course */
+// Add course 
   
   app.post('/add', (req, res) => {
     console.log('topic:', req.body['topic']);
