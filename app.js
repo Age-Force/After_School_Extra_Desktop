@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("client-sessions");
 const path = require("path");
 
-const PORT = 4060;
+const PORT = 1010;
 const app = express();
 
 
@@ -16,14 +16,6 @@ app.use(session({
 
 app.use(express.static('public'))
 
-/* GET CALL */
-
-app.get("/hello", (req, res) => {
-
-  req.session.user = "Hello world";
-  res.send("Hello Mudi");
-
-}); 
 
 //login page
 app.get("/", (req, res) => {
@@ -32,7 +24,7 @@ app.get("/", (req, res) => {
 }); 
 
 
-//loging into differen pages as users or Admin
+//Courses loading from the data Mongo
 app.get("/showallrecord", (req, res) => {
 
   const dbo = p.db("pwaCW2");
@@ -256,9 +248,9 @@ var query = { email: u_email };
       //redirect
 
           //redirect - admin and normal user
-        if (results[0].adminuser == true)
+        if (results[0].usertype == "provider")
             res.redirect('/search')
-        else if (results[0].adminuser == false)
+        else if (results[0].usertype == "user")
             res.redirect('/user')
 
 
