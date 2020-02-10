@@ -40,6 +40,7 @@ app.get("/showallrecord", (req, res) => {
     res.send(results)
   
     }
+
   else
    console.log(err)
   })
@@ -136,10 +137,10 @@ dbo1.collection('userdetails').save({name: u_name, email:u_email ,password:u_pas
  })
 
 //user and Admin register 2
-if(u_usertype=='user')
+if(u_usertype==='user')
   res.redirect('/public/templates/user_success');
 
-else if (u_usertype=='provider')
+else if (u_usertype==='provider')
   res.redirect('/public/templates/search');
 });
 
@@ -214,7 +215,7 @@ var u_email = req.body['email'];
 console.log(u_name);
 
 const dbo = p.db("pwaCW2");
-  
+
 var query = { email: u_email };
 
   dbo.collection('userdetails').find(query).toArray(function(err, results) {
@@ -222,7 +223,7 @@ var query = { email: u_email };
 
 
 
-  if(results.length != 0) //User exists
+  if(results.length !== 0) //User exists
     {
     
   // to see the first element
@@ -235,14 +236,14 @@ var query = { email: u_email };
       //redirect
 
           //redirect - admin and normal user
-        if (results[0].usertype == "provider")
+        if (results[0].usertype === "provider")
             res.redirect('/search')
-        else if (results[0].usertype == "user")
+        else if (results[0].usertype === "user")
             res.redirect('/user')
 
 
     }
-    else if (results.length == 0)
+    else if (results.length === 0)
     { 
       
       console.log('This user does not exist'); 
@@ -305,8 +306,6 @@ var u_topic = req.body['topic'];
 var u_location = req.body['location'];
 var u_price = req.body['price'];
 
-
-
   var myquery = { courses: u_topic }; //record you want to search
   var newvalues = { $set: {topic:u_topic, location:u_location,  pirce:u_price } };
 
@@ -329,9 +328,7 @@ const dbo2 = p.db("pwaCW2");
 var u_topic = req.body['topic'];
 
   var myquery = { courses: u_topic };
-  var newvalues = { $set: {courses: u_topic} };
-
-  dbo2.collection("courses").deleteOne(myquery, function(err, res) {
+    dbo2.collection("courses").deleteOne(myquery, function(err, res) {
     if (err) throw err;
     console.log("1 course deleted");
    });
