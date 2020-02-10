@@ -40,15 +40,10 @@ app.get("/showallrecord", (req, res) => {
     res.send(results)
   
     }
-  
   else
    console.log(err)
-  
-    // send HTML file populated with quotes here
   })
-  
   });
-
 
 
 //Admin search  page
@@ -115,9 +110,7 @@ app.get("/allcomments", (req, res) => {
   });
 
 
-
 const bodyParser = require('body-parser');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -184,11 +177,7 @@ res.sendFile(__dirname + '/public/templates/user_success.html') //create a index
 
 });
 
-
-
-
 var db
-
 var p
 
 // Retrieve
@@ -238,8 +227,6 @@ var query = { email: u_email };
     
   // to see the first element
     // res.send('user found' +JSON.stringify(results))
-  
-
 
     req.session.user = results[0].name;   // Saving User details in Sessions to show name across all pages
 
