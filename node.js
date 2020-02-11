@@ -48,13 +48,13 @@ app.get("/showallrecord", (req, res) => {
 
 
 //Admin search  page
-app.get("/public/templates/userPage", (req, res) => {
+app.get("/userPage", (req, res) => {
   res.sendFile(__dirname + '/public/templates/userPage.html');
 
 }); 
 
 //user adminPage page
-app.get("/public/templates/adminPage", (req, res) => {
+app.get("adminPage", (req, res) => {
   res.sendFile(__dirname + '/public/templates/adminPage.html');
 
 }); 
@@ -138,10 +138,10 @@ dbo1.collection('userdetails').save({name: u_name, email:u_email ,password:u_pas
 
 //user and Admin register 2
 if(u_usertype==='user')
-  res.redirect('/public/templates/userPage');
+  res.redirect('/userPage');
 
 else if (u_usertype==='provider')
-  res.redirect('/public/templates/adminPage');
+  res.redirect('/adminPage');
 });
 
 
@@ -158,7 +158,10 @@ app.get('/json', function(req, res) {
   res.json({"foo": "bar"});
 
 });
-
+app.get('/page', function(req, res) {
+  res.sendFile(__dirname + '/public/templates/userPage.html') //create a index file
+  //res.send("User Page");
+  });
 
 /* GET HTML FILE */
 app.get('/register', function(req, res) {
@@ -167,7 +170,7 @@ app.get('/register', function(req, res) {
 
 
 /* GET HTML FILE */
-app.get('/user', function(req, res) {
+app.get('/userPage', function(req, res) {
 res.sendFile(__dirname + '/public/templates/userPage.html') //create a index file
 //res.send("User Page");
 });
