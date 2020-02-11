@@ -18,12 +18,14 @@
             <br>
             <hr>
             List of topics: <br>
-
-            <select multiple>
-                <option v-for='course in resultQuery'>
-                    {{ course.topic }}
-                </option>
-            </select>  
+            <li>
+                <select multiple>
+                    <option v-for='course in resultQuery'>
+                        {{ course.topic }}
+                    </option>
+                </select>  
+            </li>
+                
             <br>
             <hr>
             <form action="/postcomments" method="post">
@@ -99,7 +101,7 @@ var searchQuery = null;
 
             
             }
-                }
+        }
     });
     
 </script>

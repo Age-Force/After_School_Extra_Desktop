@@ -8,38 +8,9 @@
     "background_color": "#fff",
     "orientation" : "portrait-primary",
     "icons": [
-        {
-        "src": "../images/chemistry-2938901_640.jpg",
-        "sizes":   "64x64",
-        "type": "image/png"
-        },
-        {
-            "src": "../images/abacus-1866497_640.jpg",
-            "sizes": "96x96",
-            "type": "image/png"
-        },
-        {
-            "src": "../images/chemistry-740453_640.jpg",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
-        {
-            "src": "../images/geometry-1044090_640.jpg",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
+      
         {
             "src": "../images/logo.png",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
-        {
-            "src": "../images/math-1547018_640.jpg",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
-        {
-            "src": "../images/zodiac-29420_640.png",
             "sizes": "144x144",
             "type": "image/png"
         }

@@ -1,13 +1,7 @@
 var cacheName = "V1";
 var cacheFiles = [
     '../../../CourseWork2_VUE/',
-    '../../../CourseWork2_VUE/public/images/abacus-1866497_640.jpg',
-    '../../../CourseWork2_VUE/public/images/chemistry-2938901_640.jpg',
-    '../../../CourseWork2_VUE/public/images/chemistry-740453_640.jpg',
-    '../../../CourseWork2_VUE/public/images/geometry-1044090_640.jpg',
     '../../../CourseWork2_VUE/public/images/logo.png',
-    '../../../CourseWork2_VUE/public/images/math-1547018_640png',
-    '../../../CourseWork2_VUE/public/images/zodiac-29420_640.png'
 ]
 
 self.addEventListener('install', async e => {
