@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Signup Form</title>
+    <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/login.css">
+    <link rel="stylesheet" type="text/css" href="./public/static/style2.css">
+    <link rel="stylesheet" type="text/css" href="./public/static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body class="container">
+    <div class="wrapper fadeInDown">
+        <div class="formContent">
+
+        <!--Icon-->
+            <div class="fadeIn first">
+                <img src="../images/logo.png" id="icon" alt="User Icon" />
+            </div>
+
+        <!--Registrations-->
+             <form action="/form_decision" method="POST" name="Registration">
+                 <span>
+                     <div id="signupform">
+                         <input class="fadeIn second" type="text" name="name" id="u_name" placeholder="Enter Name" required /><br>
+                         <input class="fadeIn second" type="email" name="email" id="u_email" placeholder="Enter E-Mail " required /><br>
+                         <input class="fadeIn third" type="password" name="password" id="u_pass" placeholder="Enter Password " required/>
+
+                         <!--Radio Buttons 1-->
+                        <div class="form-check">
+                            <label class="radio-inline" class="fadeIn fourth">
+                                <input type="radio" name='usertype' value="user">
+                                User
+                            </label>
+                        </div>
+                         <!--Radio Buttons 2-->
+                        <div class="form-check">
+                            <label class="radio-inline" class="fadeIn fourth">
+                                <input type="radio" name='usertype' value="provider">
+                                Provider
+                            </label>
+                        </div>
+
+                        <input type="submit" id="submitDetails" class="fadeIn fourth" name="submitDetails" value="Register" /><br>
+                     </div>
+                     <br><br>
+                     <!--p>Already have an account?<a href="/login">Login</a></p-->
+                 </span>
+             </form>
+
+             <!-- Remind Passowrd -->
+             <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

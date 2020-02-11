@@ -2,9 +2,10 @@
   "name": "CourseWork2_VUE",
   "version": "1.0.0",
   "dependencies": {
+    "body-parser": "latest",
     "client-sessions": "^0.8.0",
     "express": "^4.17.1",
-    "body-parser": "latest"
+    "web-push": "^3.4.3"
   },
   "devDependencies": {
     "mongodb": "^3.5.2"
