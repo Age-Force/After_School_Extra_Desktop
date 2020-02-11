@@ -1,7 +1,10 @@
 var cacheName = "V1";
 var cacheFiles = [
-    '../../../CourseWork2_VUE/',
-    '../../../CourseWork2_VUE/public/images/logo.png',
+    '../../../CourseWork2_VUE',
+    './public/static/style.css',
+    './public/static/style2.css',
+    '../static/login.css',
+    '../images/logo.png',
 ]
 
 self.addEventListener('install', async e => {
@@ -10,12 +13,6 @@ self.addEventListener('install', async e => {
 
     return self.skipWaititng();
     
-    /*e.waitUntil(
-      caches.open(cacheName).then(function(cache) {
-        console.log('[Service Worker] Caching all: app shell and content');
-        return cache.addAll(cacheFiles);
-      })
-    );*/
   });
 
   self.addEventListener('activate', function(e){

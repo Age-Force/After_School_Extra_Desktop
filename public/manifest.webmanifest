@@ -1,18 +1,35 @@
 {
-    "name": "Todo Vue App",
-    "short_name": "PWA",
-    "description": "Progressive Web App creates a todo list",
-    "start_url": "./index.html",
-    "display": "standalone",
-    "theme_color": "#42b983",
-    "background_color": "#fff",
-    "orientation" : "portrait-primary",
-    "icons": [
-      
-        {
-            "src": "../images/logo.png",
-            "sizes": "144x144",
-            "type": "image/png"
-        }
-    ]
+  "$schema": "http://json.schemastore.org/web-manifest",
+  "short_name": "12CharShortName",
+  "name": "Name",
+  "description": "description",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/",
+      "sizes": "96x96",
+      "type": "image/jpg"
+    },
+    {
+      "src": "img3x.jpg",
+      "sizes": "144x144",
+      "type": "image/jpg"
+    },
+    {
+      "src": "img4x.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    },
+    {
+      "src": "img6x.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ],
+  "background_color": "#EEE",
+  "theme_color": "#1565c0",
+  "start_url": "./?utm_source=web_app_manifest",
+  "display": "standalone",
+  "orientation": "any"
 }
+

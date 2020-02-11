@@ -46,20 +46,25 @@ app.get("/showallrecord", (req, res) => {
   })
   });
 
+  //calling all pages
+  app.get('/userpage', function(req, res) {
+    res.sendFile(__dirname + '/public/templates/userPage.html') //create a index file
+    //res.send("User Page");
+    });
+  
+  /* GET HTML FILE */
+  app.get('/register', function(req, res) {
+    res.sendFile(__dirname + '/public/templates/register.html') //create a index file
+  });
 
-//Admin search  page
-app.get("/userPage", (req, res) => {
-  res.sendFile(__dirname + '/public/templates/userPage.html');
-
-}); 
 
 //user adminPage page
-app.get("adminPage", (req, res) => {
+app.get("/adminPage", (req, res) => {
   res.sendFile(__dirname + '/public/templates/adminPage.html');
 
 }); 
 
-//courses adminPage 
+//courses adminPage /
 app.get("/allcourses", (req, res) => {
 
   const dbo = p.db("pwaCW2");
@@ -132,7 +137,7 @@ dbo1.collection('userdetails').save({name: u_name, email:u_email ,password:u_pas
    if (err) return console.log(err)
 
    console.log('saved to database')
-   res.redirect('/user')
+   res.redirect('/userPage')
 
  })
 
@@ -157,22 +162,6 @@ app.get('/json', function(req, res) {
 
   res.json({"foo": "bar"});
 
-});
-app.get('/page', function(req, res) {
-  res.sendFile(__dirname + '/public/templates/userPage.html') //create a index file
-  //res.send("User Page");
-  });
-
-/* GET HTML FILE */
-app.get('/register', function(req, res) {
-  res.sendFile(__dirname + '/public/templates/register.html') //create a index file
-});
-
-
-/* GET HTML FILE */
-app.get('/userPage', function(req, res) {
-res.sendFile(__dirname + '/public/templates/userPage.html') //create a index file
-//res.send("User Page");
 });
 
 var db
