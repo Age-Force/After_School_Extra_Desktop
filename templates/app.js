@@ -7,16 +7,12 @@ if("serviceWorker" in navigator){
 async function send(){
     console.log("registering SW");
     const register = await navigator.serviceWorker.register(
-        "./serviceWorker.js",
-    {
-        scope: "./"
-    }
+        "/sw.js"
     );
     console.log("service worker registered......");
 
     console.log("registering push........");
-    const subscription = await register.pushManager.subscribe({
-        userVisibleOnly: true,
+    const subscription = await register.pushManager.subscribe({userVisibleOnly:true,
         applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
     });
     console.log("push Registered....");

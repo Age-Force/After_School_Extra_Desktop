@@ -4,7 +4,7 @@ const path = require("path");
 const express = require("multer");
 
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'templates')));
 
 
 const publicVapidKey = 'BMf_9maerv-SRY2ES8nL8PkDROZt1chj_HSQ2orVRDcr8SMqNW350WAyXU5EWS6fl5mLUc1dPmKG7ftrrihgDt8';

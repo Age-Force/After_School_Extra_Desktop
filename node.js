@@ -14,12 +14,12 @@ app.use(session({
   activeDuration: 5 * 60 * 1000,
 }));
 
-app.use(express.static('public'))
+app.use(express.static('templates'))
 
 
 //login page
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + '/public/templates/index.html');
+  res.sendFile(__dirname + '/templates/index.html');
 
 }); 
 
@@ -48,21 +48,41 @@ app.get("/showallrecord", (req, res) => {
 
   //calling all pages
   app.get('/userpage', function(req, res) {
-    res.sendFile(__dirname + '/public/templates/userPage.html') //create a index file
+    res.sendFile(__dirname + '/templates/userPage.html') //create a index file
     //res.send("User Page");
     });
   
   /* GET HTML FILE */
   app.get('/register', function(req, res) {
-    res.sendFile(__dirname + '/public/templates/register.html') //create a index file
+    res.sendFile(__dirname + '/templates/register.html') //create a index file
   });
+  
+  
+  /* GET HTML FILE */
+  app.get('/userPage', function(req, res) {
+  res.sendFile(__dirname + '/templates/userPage.html') //create a index file
+  //res.send("User Page");
+  });
+  
+  /* GET HTML FILE */
+  app.get("/adminPage", function(req, res) {
+    res.sendFile(__dirname + '/templates/adminPage.html') //create a index file
+    //res.send("User Page");
+    });
 
+//Admin search  page
+app.get("/userPage", (req, res) => {
+  res.sendFile(__dirname + '/templates/userPage.html');
+
+}); 
 
 //user adminPage page
 app.get("/adminPage", (req, res) => {
-  res.sendFile(__dirname + '/public/templates/adminPage.html');
+  res.sendFile(__dirname + '/templates/adminPage.html');
 
 }); 
+
+
 
 //courses adminPage /
 app.get("/allcourses", (req, res) => {
@@ -225,7 +245,7 @@ var query = { email: u_email };
         if (results[0].usertype === "provider")
             res.redirect('/adminPage')
         else if (results[0].usertype === "user")
-            res.redirect('/user')
+            res.redirect('/userPage')
 
 
     }
@@ -239,7 +259,7 @@ var query = { email: u_email };
   })
 });
 
-app.post('/user_success', (req, res) => {
+app.post('/userPage', (req, res) => {
     console.log('Got ID:', req.body['_id']);
     console.log('Got Name:', req.body['name']);
 
@@ -254,7 +274,7 @@ dbo1.collection('userdetails').save({Name: u_name, Email:u_email ,Password:u_pas
    if (err) return console.log(err)
 
    console.log('saved to database')
-   res.redirect('/user')
+   res.redirect('/userPage')
 
  })
 
@@ -275,7 +295,7 @@ const dbo1 = p.db("pwaCW2");
     if(err) return console.log(err)
     console.log('Courses commented')
 
-    res.redirect('/public/templates/user_success');
+    res.redirect('templates/user_success');
   })
  });
 
