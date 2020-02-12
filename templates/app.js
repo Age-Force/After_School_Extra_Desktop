@@ -7,7 +7,7 @@ if("serviceWorker" in navigator){
 async function send(){
     console.log("registering SW");
     const register = await navigator.serviceWorker.register(
-        "/sw.js"
+        "./sw.js"
     );
     console.log("service worker registered......");
 
@@ -27,18 +27,18 @@ async function send(){
     });
     console.log('Push snet......');
 
-    function urlBase64ToUint8Array(base64String){
-        const padding = '='.repeat((4 - base64String.length % 4) % 4);
-        const base64 = (base64String + padding)
-            .replace(/-/g, '+')
-            .replace(/-/g, '/');
+}
+function urlBase64ToUint8Array(base64String){
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+        .replace(/-/g, '+')
+        .replace(/_/g, '/');
 
-        const rawData = window.atob(base64);
-        const outputArray = new Uint8Array(rawData.length);
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
 
-        for (let i = 0; i < rawData.length; ++i){
-            outputArray[i] = rawData.charCodeAt(i);
-        }
-        return outputArray;
+    for (let i = 0; i < rawData.length; ++i){
+        outputArray[i] = rawData.charCodeAt(i);
     }
+    return outputArray;
 }
