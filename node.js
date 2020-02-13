@@ -319,7 +319,7 @@ const dbo1 = p.db("pwaCW2");
     if(err) return console.log(err)
     console.log('Courses commented')
 
-    res.redirect('templates/user_success');
+    res.redirect('templates/userPage');
   })
  });
 
