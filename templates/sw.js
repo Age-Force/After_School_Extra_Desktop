@@ -1,8 +1,8 @@
 var cacheName = "V1";
 var cacheFiles = [
     '/',
-    './templates/static/style.css',
-    './templates/static/style2.css',
+    '../static/style.css',
+    '../static/style2.css',
     '../static/login.css',
     '../images/logo.png',
     './templates/icons',
