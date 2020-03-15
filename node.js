@@ -4,7 +4,7 @@ const path = require("path");
 const webpush = require("web-push");
 const bodyParser = require('body-parser');
 
-const PORT = 1010;
+const PORT = 5000;
 const app = express();
 
 
@@ -12,7 +12,7 @@ const app = express();
 app.use(session({
   cookieName: 'session',
   secret: 'random_string_goes_here',
-  duration: 30 * 60 * 100,
+  duration: 30 * 60 * 200,
   activeDuration: 5 * 60 * 1000,
 
 }));
