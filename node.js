@@ -109,10 +109,7 @@ app.get("/adminPage", (req, res) => {
   res.sendFile(__dirname + '/templates/adminPage.html');
 
 }); 
-
-
-
-//courses adminPage /
+//courses adminPage 
 app.get("/allcourses", (req, res) => {
 
   const dbo = p.db("pwaCW2");
@@ -166,8 +163,9 @@ app.get("/allcomments", (req, res) => {
 
 ////user and Admin register 1
 app.post('/form_decision', (req, res) => {
-  console.log('usertype:', req.body['usertype']);
-  console.log('Got Name:', req.body['name']);
+
+console.log('usertype:', req.body['usertype']);
+console.log('Got Name:', req.body['name']);
 
 var u_name = req.body['name'];
 var u_pass = req.body['password'];
