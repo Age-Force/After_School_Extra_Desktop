@@ -179,9 +179,12 @@ dbo1.collection('userdetails').save({name: u_name, email:u_email ,password:u_pas
    if (err) return console.log(err)
 
    console.log('saved to database')
-   res.redirect('/userPage')
+   res.sendStatus(200);
+   //res.redirect('/userPage')
 
  })
+
+/*
 
 //user and Admin register 2
 if(u_usertype==='user')
@@ -189,6 +192,8 @@ if(u_usertype==='user')
 
 else if (u_usertype==='provider')
   res.redirect('/adminPage');
+*/
+
 });
 
 
@@ -230,7 +235,7 @@ MongoClient.connect('mongodb+srv://pwaCW2:Hocnd1com@cluster0-ganv4.mongodb.net/t
 
 
 
-
+//login
 app.post('/logindecision', (req, res) => {
   console.log('Got Name:', req.body['name']);
   console.log('Got ID:', req.body['email']);
@@ -247,37 +252,45 @@ const dbo = p.db("pwaCW2");
 var query = { email: u_email };
 
   dbo.collection('userdetails').find(query).toArray(function(err, results) {
-   
+    
 
 
 
+    
   if(results.length !== 0) //User exists
     {
     
-  // to see the first element
-    // res.send('user found' +JSON.stringify(results))
+      // to see the first element
+        req.session.user = results[0].name;   // Saving User details in Sessions to show name across all pages
 
-    req.session.user = results[0].name;   // Saving User details in Sessions to show name across all pages
+        res.send(JSON.stringify(results));
+
+        console.log('user found ' + results[0].name);
+          //redirect
 
 
-    console.log('user found ' + results[0].name);
-      //redirect
-
-          //redirect - admin and normal user
+              //redirect - admin and normal user
+      
+      
         if (results[0].usertype === "provider")
             res.redirect('/adminPage')
         else if (results[0].usertype === "user")
             res.redirect('/userPage')
 
 
-    }
-    else if (results.length === 0)
-    { 
 
+    }
+    //else if (results.length === 0)
+    else
+    { 
+  
+      res.send('0');
       console.log('This user does not exist'); 
-  }
-  else
-   console.log(err)
+
+    }
+//    else
+  //    res.send(err)
+
   })
 });
 
@@ -388,5 +401,7 @@ var u_topic = req.body['topic'];
 app.listen(PORT, () => {
  console.log(`Server is listening on port: ${PORT}`);
 });
+
+
 
 

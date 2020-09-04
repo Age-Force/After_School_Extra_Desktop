@@ -1,0 +1,62 @@
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="../app.js"></script>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" type="text/css" href="./public/static/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>restaurant</title>
+</head>
+<body class="container">
+    <img src="../icons/logo.png">
+    <div class="fadeInDown">
+        <h1>THIS IS THE RESTAURANT SCREEN</h1>
+        <div id="searchFilter">
+            <!-- search -->
+            Search : <label>
+            <input v-model="searchQuery" class="input" type="text" placeholder="Enter restaurant name">
+        </label>
+            <select name="restaurantName" v-model="selectedRestaurant" placeholder="Select Name ">
+                <option value="">Select your Topic</option>
+                <option v-for="res in restaurant" v-bind:value="res.restaurantName">
+                    {{res.restaurantName }}
+                </option>
+            </select>
+            <form action="/Radd" method="POST">
+                <div class= "course" id="newCourse">
+                    <h3> Add new Item </h3>
+                    <label>
+                        <input type="text" placeholder="Name"  name='restaurantName' />
+                    </label><br />
+                    <label>
+                        <input type="text" placeholder="location"  name='restaurantLocation'  />
+                    </label><br />
+                    <label>
+                        <input type="text" placeholder="Phone Number"  name='restaurantNumber'  />
+                    </label><br />
+                    <input type="submit" value='Add New' />
+                </div>
+            </form>
+</body>
+<script>
+    var selectedRestaurant,restaurant,searchQuery;
+    var app = new Vue({
+    el: '#searchFilter',
+    data:
+        {
+            message: 'hello Vue',
+            selectedRestaurant,
+            restaurant,searchQuery
+        },
+        
+    created() {
+            fetch('/allrestaurant').then((response) =>{
+                return  response.json().then((restaurant) =>{
+                    this.restaurant = (restaurant);
+                })
+            });
+        }
+    });            
+</script>
+</html>

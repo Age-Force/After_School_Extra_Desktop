@@ -10,37 +10,29 @@
     <title>Admin Page</title>
 </head>
 <body class="container">
-    <img src="../icons/icon-128.png">
+    <img src="../icons/logo.png">
     <div class="fadeInDown">
         <h1>THIS IS THE ADMINISTRATION SCREEN</h1>
         <div id="searchFilter">
             <!-- search -->
             Search : <label>
-            <input v-model="searchQuery" class="input" type="text" placeholder="Enter topic name">
+            <input v-model="searchQuery" class="input" type="text" placeholder="Enter menuType name">
         </label>
-            <select name="topic" v-model="selectedCourse" placeholder="Select Topic">
+            <select name="menuType" v-model="selectedCourse" placeholder="Select Topic">
                 <option value="">Select your Topic</option>
-                <option v-for="course in courses" v-bind:value="course.topic">
-                    {{course.topic }}
+                <option v-for="menu in menuList" v-bind:value="menu.menuType">
+                    {{menu.menuType }}
                 </option>
             </select>
-            <!--delete for the courses-->
-            <form action="/delete" method="POST">
-                <div class= "course" id="newCourse">
-                    <h3> Delete an Item </h3>
-                    <input type="text" placeholder="Topic" name="topic" v-model='selectedCourse'  /><br />
-                    <input type="submit" value='Delete ' />
-                </div>
-            </form>
 
             <form action="/add" method="POST">
                 <div class= "course" id="newCourse">
                     <h3> Add new Item </h3>
                     <label>
-                        <input type="text" placeholder="Topic"  name='topic' />
+                        <input type="text" placeholder="Menu Type"  name='menuType' />
                     </label><br />
                     <label>
-                        <input type="text" placeholder="location"  name='location'  />
+                        <input type="text" placeholder="menuName"  name='menuName'  />
                     </label><br />
                     <label>
                         <input type="text" placeholder="price"  name='price'  />
@@ -48,41 +40,22 @@
                     <input type="submit" value='Add New' />
                 </div>
             </form>
-
-            <form action="/update" method="POST">
-                <div class= "course" id="newCourse">
-                    <h3> Update Existing Item </h3>
-                    <label>
-                        <input type="text" placeholder="Topic"  name="topic" v-model="selectedCourse" />
-                    </label><br />
-                    <label>
-                        <input type="text" placeholder="location" name="location" />
-                    </label><br />
-                    <label>
-                        <input type="text" placeholder="price" name="price"/>
-                    </label><br />
-                    <input type="submit" value='Update'/>
-                </div>
-            </form>
-        </div>
-    </div>
-    <script></script>
 </body>
 <script>
-    var selectedCourse,courses,searchQuery;
+    var selectedCourse,menuList,searchQuery;
     var app = new Vue({
     el: '#searchFilter',
     data:
         {
             message: 'hello Vue',
             selectedCourse,
-            courses,searchQuery
+            menuList,searchQuery
         },
         
     created() {
-            fetch('/allcourses').then((response) =>{
-                return  response.json().then((courses) =>{
-                    this.courses = (courses);
+            fetch('/allmenuList').then((response) =>{
+                return  response.json().then((menuList) =>{
+                    this.menuList = (menuList);
                 })
             });
         }

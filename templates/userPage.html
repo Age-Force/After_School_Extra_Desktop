@@ -13,16 +13,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body class="container">
-    <h1>THIS IS THE COURSES SCREEN</h1>
+    <h1>THIS IS THE menuList SCREEN</h1>
         <div id="vueapp">   
-            Search : <input v-model="searchQuery" class="input" type="text" placeholder="search topic name">
+            Search : <input v-model="searchQuery" class="input" type="text" placeholder="search menuType name">
             <br>
             <hr>
-            List of topics: <br>
+            List of menuTypes: <br>
             <li>
                 <select multiple>
                     <option v-for='course in resultQuery'>
-                        {{ course.topic }}
+                        {{ course.menuType }}
                     </option>
                 </select>  
             </li>
@@ -30,10 +30,10 @@
             <br>
             <hr>
             <form action="/postcomments" method="post">
-                <select name="topic" placeholder="Select Topic">       
+                <select name="menuType" placeholder="Select Topic">       
                 <option value="">Select your Topic</option>
-                    <option v-for="course in courses" v-bind:value="course.topic">
-                        {{course.topic }}
+                    <option v-for="course in menuList" v-bind:value="course.menuType">
+                        {{course.menuType }}
                     </option>
                 </select>
                 <input type="text" placeholder="Enter your comments" name="comment" />
@@ -53,7 +53,7 @@
             Some of our comments : <br>
             <ul>
                 <li v-for="comment in comments">
-                    <h3 style="color:blueviolet;"> {{ comment.topic }}</h3>
+                    <h3 style="color:blueviolet;"> {{ comment.menuType }}</h3>
                     <h4> {{ comment.comment }}</h4>
                 <h3> Rating : {{ comment.rating }}</h3>
                     <br>
@@ -65,21 +65,21 @@
 <script type="text/javascript">
 var searchQuery = null;
 
-    var courses, comments;
+    var menuList, comments;
      
     var app = new Vue({
         el: '#vueapp',
         data:
             {
                 message: 'hello Vue',
-                courses,
+                menuList,
                 searchQuery,
                 comments
             },
         created() {
-                fetch('/allcourses').then((response) =>{
-                    return  response.json().then((courses) =>{
-                        this.courses = (courses);
+                fetch('/allmenuList').then((response) =>{
+                    return  response.json().then((menuList) =>{
+                        this.menuList = (menuList);
                     })
                 }),
                 fetch('/allcomments').then((response) =>{
@@ -92,12 +92,12 @@ var searchQuery = null;
         resultQuery(){
             
             if(this.searchQuery){
-            return this.courses.filter((item)=>{
+            return this.menuList.filter((item)=>{
                 console.log(item);
-                return this.searchQuery.toLowerCase().split(' ').every(v => item.topic.toLowerCase().includes(v))
+                return this.searchQuery.toLowerCase().split(' ').every(v => item.menuType.toLowerCase().includes(v))
             })
             }else if(this.searchQuery == null){
-                return this.courses;
+                return this.menuList;
             }
 
             
